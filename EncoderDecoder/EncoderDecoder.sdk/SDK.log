@@ -1,0 +1,342 @@
+15:19:50 INFO  : Registering command handlers for SDK TCF services
+15:19:52 INFO  : Launching XSCT server: xsct -n -interactive /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/temp_xsdb_launch_script.tcl
+15:19:56 INFO  : XSCT server has started successfully.
+15:20:03 INFO  : Successfully done setting XSCT server connection channel  
+15:20:03 INFO  : Successfully done setting SDK workspace  
+15:20:03 INFO  : Processing command line option -hwspec /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper.hdf.
+15:22:15 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:22:16 INFO  : Jtag cable 'Xilinx HW-Z1-ZCU111 FT4232H 96907A' is selected.
+15:22:16 INFO  : 'jtag frequency' command is executed.
+15:22:16 INFO  : Sourcing of '/home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl' is done.
+15:22:16 INFO  : Context for 'APU' is selected.
+15:22:17 INFO  : System reset is completed.
+15:22:20 INFO  : 'after 3000' command is executed.
+15:22:20 INFO  : Context for 'APU' is selected.
+15:22:20 INFO  : Cleared APU and A53 resets
+15:22:20 INFO  : Context for 'RPU' is selected.
+15:22:20 INFO  : Cleared RPU and R5 resets
+15:22:20 INFO  : 'targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0' command is executed.
+15:22:40 INFO  : FPGA configured successfully with bitstream "/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+15:22:40 INFO  : Context for 'APU' is selected.
+15:22:40 INFO  : Hardware design information is loaded from '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+15:22:40 INFO  : 'configparams force-mem-access 1' command is executed.
+15:22:40 INFO  : Context for 'APU' is selected.
+15:22:40 INFO  : Sourcing of '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl' is done.
+15:22:41 INFO  : 'psu_init' command is executed.
+15:22:42 INFO  : 'after 1000' command is executed.
+15:22:42 INFO  : 'psu_ps_pl_isolation_removal' command is executed.
+15:22:43 INFO  : 'after 1000' command is executed.
+15:22:44 INFO  : 'psu_ps_pl_reset_config' command is executed.
+15:22:44 INFO  : 'catch {psu_protection}' command is executed.
+15:22:44 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:22:44 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+15:22:44 INFO  : The application '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf' is downloaded to processor 'psu_cortexa53_0'.
+15:22:44 INFO  : 'configparams force-mem-access 0' command is executed.
+15:22:44 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -system
+after 3000
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+reset_apu
+targets -set -nocase -filter {name =~"RPU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+clear_rpu_reset
+targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0
+fpga -file /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+loadhw -hw /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+source /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl
+psu_init
+after 1000
+psu_ps_pl_isolation_removal
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -processor
+dow /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:22:44 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:22:44 INFO  : 'con' command is executed.
+15:22:44 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+con
+----------------End of Script----------------
+
+15:22:44 INFO  : Disconnected from the channel tcfchan#1.
+15:27:35 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:27:36 INFO  : Jtag cable 'Xilinx HW-Z1-ZCU111 FT4232H 96907A' is selected.
+15:27:36 INFO  : 'jtag frequency' command is executed.
+15:27:36 INFO  : Sourcing of '/home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl' is done.
+15:27:36 INFO  : Context for 'APU' is selected.
+15:27:37 INFO  : System reset is completed.
+15:27:40 INFO  : 'after 3000' command is executed.
+15:27:40 INFO  : Context for 'APU' is selected.
+15:27:40 INFO  : Cleared APU and A53 resets
+15:27:40 INFO  : Context for 'RPU' is selected.
+15:27:40 INFO  : Cleared RPU and R5 resets
+15:27:40 INFO  : 'targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0' command is executed.
+15:28:00 INFO  : FPGA configured successfully with bitstream "/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+15:28:00 INFO  : Context for 'APU' is selected.
+15:28:00 INFO  : Hardware design information is loaded from '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+15:28:00 INFO  : 'configparams force-mem-access 1' command is executed.
+15:28:00 INFO  : Context for 'APU' is selected.
+15:28:00 INFO  : Sourcing of '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl' is done.
+15:28:02 INFO  : 'psu_init' command is executed.
+15:28:03 INFO  : 'after 1000' command is executed.
+15:28:03 INFO  : 'psu_ps_pl_isolation_removal' command is executed.
+15:28:04 INFO  : 'after 1000' command is executed.
+15:28:04 INFO  : 'psu_ps_pl_reset_config' command is executed.
+15:28:04 INFO  : 'catch {psu_protection}' command is executed.
+15:28:04 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:28:04 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+15:28:04 INFO  : The application '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf' is downloaded to processor 'psu_cortexa53_0'.
+15:28:04 INFO  : 'configparams force-mem-access 0' command is executed.
+15:28:04 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -system
+after 3000
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+reset_apu
+targets -set -nocase -filter {name =~"RPU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+clear_rpu_reset
+targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0
+fpga -file /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+loadhw -hw /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+source /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl
+psu_init
+after 1000
+psu_ps_pl_isolation_removal
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -processor
+dow /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:28:04 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:28:04 INFO  : 'con' command is executed.
+15:28:04 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+con
+----------------End of Script----------------
+
+15:28:04 INFO  : Disconnected from the channel tcfchan#2.
+15:40:40 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+15:40:40 INFO  : Jtag cable 'Xilinx HW-Z1-ZCU111 FT4232H 96907A' is selected.
+15:40:40 INFO  : 'jtag frequency' command is executed.
+15:40:40 INFO  : Sourcing of '/home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl' is done.
+15:40:40 INFO  : Context for 'APU' is selected.
+15:40:41 INFO  : System reset is completed.
+15:40:44 INFO  : 'after 3000' command is executed.
+15:40:44 INFO  : Context for 'APU' is selected.
+15:40:44 INFO  : Cleared APU and A53 resets
+15:40:44 INFO  : Context for 'RPU' is selected.
+15:40:44 INFO  : Cleared RPU and R5 resets
+15:40:44 INFO  : 'targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0' command is executed.
+15:41:04 INFO  : FPGA configured successfully with bitstream "/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+15:41:04 INFO  : Context for 'APU' is selected.
+15:41:04 INFO  : Hardware design information is loaded from '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+15:41:04 INFO  : 'configparams force-mem-access 1' command is executed.
+15:41:04 INFO  : Context for 'APU' is selected.
+15:41:04 INFO  : Sourcing of '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl' is done.
+15:41:06 INFO  : 'psu_init' command is executed.
+15:41:07 INFO  : 'after 1000' command is executed.
+15:41:07 INFO  : 'psu_ps_pl_isolation_removal' command is executed.
+15:41:08 INFO  : 'after 1000' command is executed.
+15:41:08 INFO  : 'psu_ps_pl_reset_config' command is executed.
+15:41:08 INFO  : 'catch {psu_protection}' command is executed.
+15:41:08 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:41:08 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+15:41:08 INFO  : The application '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf' is downloaded to processor 'psu_cortexa53_0'.
+15:41:08 INFO  : 'configparams force-mem-access 0' command is executed.
+15:41:08 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -system
+after 3000
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+reset_apu
+targets -set -nocase -filter {name =~"RPU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+clear_rpu_reset
+targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0
+fpga -file /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+loadhw -hw /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+source /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl
+psu_init
+after 1000
+psu_ps_pl_isolation_removal
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -processor
+dow /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+15:41:08 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+15:41:08 INFO  : 'con' command is executed.
+15:41:08 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+con
+----------------End of Script----------------
+
+15:41:08 INFO  : Disconnected from the channel tcfchan#3.
+16:14:43 INFO  : SDK has detected change in the last modified timestamps for source hardware specification file Source:1584009032000,  Project:1584003328000
+16:14:43 INFO  : Project design_1_wrapper_hw_platform_0's source hardware specification located at /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper.hdf is now different from the local copy.
+		 The local copy will be replaced with the source specification and your workspace will be updated.
+16:14:48 INFO  : Copied contents of /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper.hdf into /design_1_wrapper_hw_platform_0/system.hdf.
+16:14:57 INFO  : Synchronizing projects in the workspace with the hardware platform specification changes.
+16:14:58 INFO  : 
+16:14:59 INFO  : Updating hardware inferred compiler options for EncoderDecoder.
+16:14:59 INFO  : Clearing existing target manager status.
+16:14:59 INFO  : Closing and re-opening the MSS file of ther project EncoderDecoder_bsp
+16:15:00 INFO  : Workspace synchronized with the new hardware specification file. Cleaning dependent projects...
+16:15:01 WARN  : Linker script will not be updated automatically. Users need to update it manually.
+16:22:33 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+16:22:33 INFO  : Jtag cable 'Xilinx HW-Z1-ZCU111 FT4232H 96907A' is selected.
+16:22:33 INFO  : 'jtag frequency' command is executed.
+16:22:33 INFO  : Sourcing of '/home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl' is done.
+16:22:33 INFO  : Context for 'APU' is selected.
+16:22:34 INFO  : System reset is completed.
+16:22:37 INFO  : 'after 3000' command is executed.
+16:22:37 INFO  : Context for 'APU' is selected.
+16:22:37 INFO  : Cleared APU and A53 resets
+16:22:37 INFO  : Context for 'RPU' is selected.
+16:22:37 INFO  : Cleared RPU and R5 resets
+16:22:37 INFO  : 'targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0' command is executed.
+16:22:57 INFO  : FPGA configured successfully with bitstream "/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+16:22:57 INFO  : Context for 'APU' is selected.
+16:22:57 INFO  : Hardware design information is loaded from '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+16:22:57 INFO  : 'configparams force-mem-access 1' command is executed.
+16:22:57 INFO  : Context for 'APU' is selected.
+16:22:57 INFO  : Sourcing of '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl' is done.
+16:22:58 INFO  : 'psu_init' command is executed.
+16:22:59 INFO  : 'after 1000' command is executed.
+16:22:59 INFO  : 'psu_ps_pl_isolation_removal' command is executed.
+16:23:00 INFO  : 'after 1000' command is executed.
+16:23:00 INFO  : 'psu_ps_pl_reset_config' command is executed.
+16:23:00 INFO  : 'catch {psu_protection}' command is executed.
+16:23:00 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+16:23:00 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+16:23:01 INFO  : The application '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf' is downloaded to processor 'psu_cortexa53_0'.
+16:23:01 INFO  : 'configparams force-mem-access 0' command is executed.
+16:23:01 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -system
+after 3000
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+reset_apu
+targets -set -nocase -filter {name =~"RPU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+clear_rpu_reset
+targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0
+fpga -file /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+loadhw -hw /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+source /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl
+psu_init
+after 1000
+psu_ps_pl_isolation_removal
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -processor
+dow /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:23:01 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+16:23:01 INFO  : 'con' command is executed.
+16:23:01 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+con
+----------------End of Script----------------
+
+16:23:01 INFO  : Disconnected from the channel tcfchan#4.
+16:27:55 INFO  : Connected to target on host '127.0.0.1' and port '3121'.
+16:27:55 INFO  : Jtag cable 'Xilinx HW-Z1-ZCU111 FT4232H 96907A' is selected.
+16:27:55 INFO  : 'jtag frequency' command is executed.
+16:27:55 INFO  : Sourcing of '/home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl' is done.
+16:27:55 INFO  : Context for 'APU' is selected.
+16:27:56 INFO  : System reset is completed.
+16:27:59 INFO  : 'after 3000' command is executed.
+16:28:00 INFO  : Context for 'APU' is selected.
+16:28:00 INFO  : Cleared APU and A53 resets
+16:28:00 INFO  : Context for 'RPU' is selected.
+16:28:00 INFO  : Cleared RPU and R5 resets
+16:28:00 INFO  : 'targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0' command is executed.
+16:28:20 INFO  : FPGA configured successfully with bitstream "/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit"
+16:28:20 INFO  : Context for 'APU' is selected.
+16:28:20 INFO  : Hardware design information is loaded from '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf'.
+16:28:20 INFO  : 'configparams force-mem-access 1' command is executed.
+16:28:20 INFO  : Context for 'APU' is selected.
+16:28:20 INFO  : Sourcing of '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl' is done.
+16:28:20 INFO  : 'psu_init' command is executed.
+16:28:21 INFO  : 'after 1000' command is executed.
+16:28:21 INFO  : 'psu_ps_pl_isolation_removal' command is executed.
+16:28:22 INFO  : 'after 1000' command is executed.
+16:28:23 INFO  : 'psu_ps_pl_reset_config' command is executed.
+16:28:23 INFO  : 'catch {psu_protection}' command is executed.
+16:28:23 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+16:28:23 INFO  : Processor reset is completed for 'psu_cortexa53_0'.
+16:28:23 INFO  : The application '/home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf' is downloaded to processor 'psu_cortexa53_0'.
+16:28:23 INFO  : 'configparams force-mem-access 0' command is executed.
+16:28:23 INFO  : ----------------XSDB Script----------------
+connect -url tcp:127.0.0.1:3121
+source /home/shubham/Xilinx2018.3/SDK/2018.3/scripts/sdk/util/zynqmp_utils.tcl
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -system
+after 3000
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+reset_apu
+targets -set -nocase -filter {name =~"RPU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+clear_rpu_reset
+targets -set -filter {jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A" && level==0} -index 0
+fpga -file /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/design_1_wrapper.bit
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+loadhw -hw /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/system.hdf -mem-ranges [list {0x80000000 0xbfffffff} {0x400000000 0x5ffffffff} {0x1000000000 0x7fffffffff}]
+configparams force-mem-access 1
+targets -set -nocase -filter {name =~"APU*" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+source /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/design_1_wrapper_hw_platform_0/psu_init.tcl
+psu_init
+after 1000
+psu_ps_pl_isolation_removal
+after 1000
+psu_ps_pl_reset_config
+catch {psu_protection}
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+rst -processor
+dow /home/shubham/Vivado_Exercises/EncoderDecoder/EncoderDecoder.sdk/EncoderDecoder/Debug/EncoderDecoder.elf
+configparams force-mem-access 0
+----------------End of Script----------------
+
+16:28:23 INFO  : Context for processor 'psu_cortexa53_0' is selected.
+16:28:23 INFO  : 'con' command is executed.
+16:28:23 INFO  : ----------------XSDB Script (After Launch)----------------
+targets -set -nocase -filter {name =~"*A53*0" && jtag_cable_name =~ "Xilinx HW-Z1-ZCU111 FT4232H 96907A"} -index 1
+con
+----------------End of Script----------------
+
+16:28:23 INFO  : Disconnected from the channel tcfchan#5.

@@ -1,0 +1,40 @@
+Copyright 1986-2018 Xilinx, Inc. All Rights Reserved.
+------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2018.3 (lin64) Build 2405991 Thu Dec  6 23:36:41 MST 2018
+| Date         : Thu Mar 12 13:23:18 2020
+| Host         : shubham-HP-Desktop-Pro-G1-MT running 64-bit Ubuntu 18.04.1 LTS
+| Command      : upgrade_ip
+| Device       : xczu28dr-ffvg1517-2-e
+------------------------------------------------------------------------------------
+
+Upgrade Log for IP 'design_1_llr_0_0'
+
+1. Summary
+----------
+
+CAUTION (success, with warnings) in the upgrade of design_1_llr_0_0 (xilinx.com:hls:llr:1.0) from (Rev. 2003121207) to (Rev. 2003121322)
+
+After upgrade, an IP may have parameter and port differences compared to the original customization. Please review the parameters within the IP customization GUI to ensure proper functionality. Also, please review the updated IP instantiation template to ensure proper connectivity, and update your design if required.
+
+2. Interface Information
+------------------------
+
+Detected external interface differences while upgrading 'design_1_llr_0_0'.
+
+
+-Upgrade has added interface 'ctrl_V' (xilinx.com:interface:axis:1.0)
+
+
+3. Connection Warnings
+----------------------
+
+Detected external port differences while upgrading 'design_1_llr_0_0'. These changes may impact your design.
+
+
+-Upgrade has added port 'ctrl_V_TDATA'
+
+-Upgrade has added port 'ctrl_V_TREADY'
+
+-Upgrade has added port 'ctrl_V_TVALID'
+
+
